@@ -73,7 +73,7 @@ if year is not None:
     col1, col2, col3 = st.columns(3)
     col1.metric(label="Companies with layoffs", value=int(Companies_TY), delta=f"{round(Companies_delta, 2)} % vs PY")
     col2.metric(label="Total Employees Laid off", value=f"{int((Employees_TY/1000)):.1f} K", delta=f"{round(Employees_delta, 2)} % vs PY")
-    col3.metric(label="Countries Affected", value=int(Countries_TY), delta=f"{round(Countries_delta, 2)} % vs PY")
+    col3.metric(label="Countries Affected", value=int(Countries_TY), delta=f"{Countries_delta} % vs PY")
     style_metric_cards()
 
 
