@@ -47,7 +47,7 @@ table_name = "STREAMLIT_DEMO.STREAMLIT.LAYOFFS_FINAL"
 
 # Displaying data
 layoff_df=snowflake_loader(table_name)
-
+layoff_df.dropna(subset=['LAID_OFF_COUNT'], inplace=True)
 year = st.radio(
     'Select year',
     ['2021', '2022', '2023'],
@@ -92,7 +92,7 @@ def generate_map(layoff_df):
     # Loop through the data and add markers to the marker cluster layer for unique companies only
     for index, row in layoff_df.iterrows():
         if row['COMPANY'] not in unique_companies:
-            popup_text = f"Company: {row['COMPANY']}<br> Laid off count: {row['LAID_OFF_COUNT']} <br><br> More Details <br> Industry: {row['INDUSTRY']} <br> HQ Location: {row['LOCATION_HQ']}  "
+            popup_text = f"Company: {row['COMPANY']}<br> Laid off count: {int(row['LAID_OFF_COUNT'])} <br><br> More Details <br> Industry: {row['INDUSTRY']} <br> HQ Location: {row['LOCATION_HQ']}  "
             iframe = folium.IFrame(popup_text)
             popup = folium.Popup(iframe,
                      min_width=200,
